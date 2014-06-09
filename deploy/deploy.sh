@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DEBUG=0
+DEBUG=1
 BASEDIR=$(cd $(dirname $0); pwd)
 
 spark_images=( "amplab/spark:0.9.0")
