@@ -1,7 +1,7 @@
 # Spark 0.9.0
 # Version 0.9.0
 #
-FROM apache-hadoop-hdfs-precise:1.2.1
+FROM rogaha/apache-hadoop-hdfs-precise:1.2.1
 
 MAINTAINER amplab amp-docker@eecs.berkeley.edu
 
