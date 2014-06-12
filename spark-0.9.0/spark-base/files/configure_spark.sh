@@ -26,14 +26,18 @@ function deploy_spark_files() {
 
 function configure_spark() {
     configure_hadoop $1
-    #sed -i s/__MASTER__/$1/ /opt/spark-$SPARK_VERSION/conf/spark-env.sh
-    sed -i s/__MASTER__/master/ /opt/spark-$SPARK_VERSION/conf/spark-env.sh
+    sed -i s/__MASTER__/$1/ /opt/spark-$SPARK_VERSION/conf/spark-env.sh
+    #sed -i s/__MASTER__/master/ /opt/spark-$SPARK_VERSION/conf/spark-env.sh
     sed -i s/__SPARK_HOME__/"\/opt\/spark-${SPARK_VERSION}"/ /opt/spark-$SPARK_VERSION/conf/spark-env.sh
     sed -i s/__JAVA_HOME__/"\/usr\/lib\/jvm\/java-7-openjdk-amd64"/ /opt/spark-$SPARK_VERSION/conf/spark-env.sh
+    echo "export SPARK_MASTER_WEBUI_PORT=$2" >> /opt/spark-$SPARK_VERSION/conf/spark-env.sh
+    echo "export SPARK_MASTER_PORT=$3" >> /opt/spark-$SPARK_VERSION/conf/spark-env.sh
+    echo "export SPARK_WORKER_PORT=$4" >> /opt/spark-$SPARK_VERSION/conf/spark-env.sh
+    echo "export SPARK_WORKER_WEBUI_PORT=$5" >> /opt/spark-$SPARK_VERSION/conf/spark-env.sh
 }
 
 function prepare_spark() {
     create_spark_directories
     deploy_spark_files
-    configure_spark $1
+    configure_spark $1 $2 $3 $4 $5
 }
