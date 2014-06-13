@@ -7,7 +7,7 @@ export SPARK_WORKER_MEMORY=1500m
 export SPARK_MASTER_MEM=1500m
 export SPARK_MASTER_IP=__MASTER__
 export HADOOP_HOME="/etc/hadoop"
-export MASTER="spark://__MASTER__:7077"
+export MASTER="spark://__MASTER__:__MASTER_PORT__"
 export SPARK_LOCAL_DIR=/tmp/spark
 #SPARK_JAVA_OPTS="-Dspark.local.dir=/tmp/spark "
 #SPARK_JAVA_OPTS+=" -Dspark.akka.logLifecycleEvents=true "
