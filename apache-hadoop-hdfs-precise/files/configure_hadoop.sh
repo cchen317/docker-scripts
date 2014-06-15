@@ -23,11 +23,12 @@ function deploy_hadoop_files() {
 
 function configure_hadoop() {
     sed -i s/__MASTER__/$1/ /etc/hadoop/core-site.xml
+    sed -i s/__HDFS_PORT__/$2/ /etc/hadoop/core-site.xml
     sed -i s/"JAVA_HOME=\/usr\/lib\/jvm\/java-6-sun"/"JAVA_HOME=\/usr\/lib\/jvm\/java-7-openjdk-amd64"/ /etc/hadoop/hadoop-env.sh
 }
 
 function prepare_hadoop() {
     create_hadoop_directories
     deploy_hadoop_files
-    configure_hadoop $1
+    configure_hadoop $1 $2
 }
