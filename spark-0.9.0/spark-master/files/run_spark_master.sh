@@ -3,6 +3,8 @@
 
 cat /etc/hadoop/core-site.xml
 
+hadoop fs -ls /user
+
 while [ 1 ];
 do
 	tail -f /opt/spark-${SPARK_VERSION}/logs/*.out

@@ -19,6 +19,10 @@ cp /root/spark_shell_files/test.spark /
 # to do so.
 sleep 3
 
+cat /etc/hadoop/core-site.xml
+
+hadoop fs -ls /user
+
 echo "starting Spark Shell"
 
 cd $SPARK_HOME
