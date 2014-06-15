@@ -23,3 +23,5 @@ RUN (ln -s /opt/spark-$SPARK_VERSION-incubating-bin-hadoop1 /opt/spark-$SPARK_VE
 
 # Add Shark config files and configure script
 ADD files /root/spark_files
+RUN rm -rf /root/hadoop_files/configure_hadoop.sh
+RUN mv /root/spark_files/configure_hadoop.sh /root/hadoop_files/configure_hadoop.sh
