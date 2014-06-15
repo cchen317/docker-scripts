@@ -253,7 +253,12 @@ def run_with_settings(image, docker_opts=[], args=[], env={}, ports=[],
                       relative_cpu=None, memory_bytes=None):
     global cidfile
     cidfile = '/tmp/docker_cid.' + os.urandom(8).encode('hex')
-    cmd     = [ 'run', '--net=host', '--cidfile', cidfile ]
+    if 'shell' in image:
+        logging.warning('spark shell>>>>>>>>>>>>')
+        cmd     = [ 'run', '--net=host', '-i', '-t', '--cidfile', cidfile ]
+    else:
+        logging.warning('not spark shell>>>>')
+        cmd     = [ 'run', '--net=host', '--cidfile', cidfile ]
     for k, v in env.items():
         cmd += [ '-e', '%s=%s' % (k,v) ]
     logging.info('Mesos ports: ' + str(ports))
