@@ -8,7 +8,7 @@ IP=$(ip -o -4 addr list eth0 | perl -n -e 'if (m{inet\s([\d\.]+)\/\d+\s}xms) { p
 echo "MASTER_IP=$IP"
 
 echo "preparing Spark"
-prepare_spark $IP $2 $3 $4 $5
+prepare_spark $IP $2 $3 $4 $5 $6
 
 echo "starting Hadoop Namenode"
 sudo -u hdfs hadoop namenode -format > /dev/null 2>&1
