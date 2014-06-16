@@ -14,4 +14,8 @@ echo "starting Hadoop Namenode"
 sudo -u hdfs hadoop namenode -format > /dev/null 2>&1
 service hadoop-namenode start > /dev/null 2>&1
 
-sleep 5
+
+while [ 1 ];
+do
+    sleep 1
+done
