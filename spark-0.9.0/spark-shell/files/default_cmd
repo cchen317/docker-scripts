@@ -5,12 +5,12 @@ source /root/spark_files/configure_spark.sh
 env
 
 echo "preparing Spark"
-prepare_spark $1 $2 $3 $4 $5 $6
+prepare_spark $1 $2 $3 $4 $5 $6 $7
 
 echo "adding test data to HDFS"
 cp /root/spark_shell_files/test.txt /tmp
 sudo -u hdfs hadoop dfsadmin -safemode wait
-sudo -u hdfs hadoop fs -put /tmp/test.txt hdfs://$1:$6/user/hdfs/test.txt
+sudo -u hdfs hadoop fs -put /tmp/test.txt hdfs://$6:$7/user/hdfs/test.txt
 
 cp /root/spark_shell_files/test.spark /
 
@@ -26,4 +26,4 @@ hadoop fs -ls /user
 echo "starting Spark Shell"
 
 cd $SPARK_HOME
-sudo -u hdfs MASTER=spark://$1:$3 HDFS_PREFIX=hdfs://$1:$6 ./bin/spark-shell
+sudo -u hdfs MASTER=spark://$1:$3 HDFS_PREFIX=hdfs://$6:$7 ./bin/spark-shell

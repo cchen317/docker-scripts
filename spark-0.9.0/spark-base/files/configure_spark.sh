@@ -25,7 +25,7 @@ function deploy_spark_files() {
 }		
 
 function configure_spark() {
-    configure_hadoop $1 $6
+    configure_hadoop $6 $7
     sed -i s/__MASTER__/$1/ /opt/spark-$SPARK_VERSION/conf/spark-env.sh
     sed -i s/__MASTER_PORT__/$3/ /opt/spark-$SPARK_VERSION/conf/spark-env.sh
     #sed -i s/__MASTER__/master/ /opt/spark-$SPARK_VERSION/conf/spark-env.sh
@@ -41,5 +41,5 @@ function prepare_spark() {
     create_spark_directories
     deploy_spark_files
     sed -i s/9000/__HDFS_PORT__/  /etc/hadoop/core-site.xml
-    configure_spark $1 $2 $3 $4 $5 $6
+    configure_spark $1 $2 $3 $4 $5 $6 $7
 }
