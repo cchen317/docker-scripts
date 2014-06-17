@@ -43,3 +43,12 @@ function prepare_spark() {
     sed -i s/9000/__HDFS_PORT__/  /etc/hadoop/core-site.xml
     configure_spark $1 $2 $3 $4 $5 $6 $7
 }
+
+ 
+function prepare_hdfs_cluster() {
+    create_spark_directories
+    deploy_spark_files
+    sed -i s/9000/__HDFS_PORT__/  /etc/hadoop/core-site.xml
+    configure_hadoop $1 $2
+}
+

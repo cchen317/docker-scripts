@@ -7,13 +7,17 @@ source /root/spark_files/configure_spark.sh
 IP=$(ip -o -4 addr list eth0 | perl -n -e 'if (m{inet\s([\d\.]+)\/\d+\s}xms) { print $1 }')
 echo "MASTER_IP=$IP"
 
-echo "preparing Spark"
-prepare_spark $1 $2 $3 $4 $5 $6 $7
+echo "preparing HDFS Cluster"
+prepare_hdfs_cluster $1 $2
 
-echo "starting Hadoop Namenode"
-sudo -u hdfs hadoop namenode -format > /dev/null 2>&1
-service hadoop-namenode start > /dev/null 2>&1
-
+if [ $3 = "N" ] ; then
+    echo "starting Hadoop Namenode"
+    sudo -u hdfs hadoop namenode -format > /dev/null 2>&1
+    service hadoop-namenode start > /dev/null 2>&1
+else
+    echo "starting Hadoop Datanode"
+    service hadoop-datanode start
+fi
 
 while [ 1 ];
 do

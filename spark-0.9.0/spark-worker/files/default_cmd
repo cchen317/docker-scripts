@@ -8,9 +8,6 @@ echo "WORKER_IP=$IP"
 echo "preparing Spark"
 prepare_spark $1 $2 $3 $4 $5 $6 $7
 
-echo "starting Hadoop Datanode"
-service hadoop-datanode start
-
 echo "starting sshd"
 /usr/sbin/sshd
 
